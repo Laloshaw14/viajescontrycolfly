@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TricolFly Colombia ✈️ | Cotiza tus vuelos ahora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --yellow: #ffd000;
+      --blue: #0077ff;
+      --red: #ff4d4d;
+      --dark: #0c111d;
+      --light: #fefefe;
+      --gradient: linear-gradient(135deg, var(--yellow), var(--red));
+      --gradient-blue: linear-gradient(135deg, var(--blue), var(--yellow));
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #101729 0%, #070b12 100%);
+      color: var(--light);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* 🔝 NAV */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--yellow);
+    }
+
+    /* 🌊 Fondo animado */
+    .background-animated {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: radial-gradient(circle at bottom right, rgba(0,119,255,0.2), rgba(255,77,77,0.15));
+      z-index: -1;
+      animation: floatBg 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBg {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    /* ✨ HERO */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      padding: 6rem 1.5rem 3rem;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      color: #c9c9c9;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 1.2s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 🟡 BOTONES */
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      animation: fadeUp 1.4s ease;
+    }
+
+    .btn-main {
+      background: var(--gradient);
+      border: none;
+      color: #111;
+      font-weight: 800;
+      font-size: 1.3rem;
+      border-radius: 25px;
+      padding: 1.2rem 3rem;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255,208,0,0.6);
+      transition: all 0.4s ease;
+    }
+
+    .btn-main:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 45px rgba(255,77,77,0.8);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 3px solid var(--blue);
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      padding: 1rem 2.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--blue);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* 🛫 SECCIÓN DE OFERTAS */
+    .offers {
+      padding: 5rem 2rem;
+      background: radial-gradient(circle at top right, rgba(255,208,0,0.1), transparent 70%);
+      text-align: center;
+    }
+
+    .offers h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--yellow);
+      animation: pulseText 3s infinite alternate;
+    }
+
+    @keyframes pulseText {
+      0% { text-shadow: 0 0 5px var(--yellow); }
+      100% { text-shadow: 0 0 20px var(--yellow); }
+    }
+
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .offer-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .offer-card img {
+      width: 70px;
+      margin-bottom: 1rem;
+      animation: floatIcon 4s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .offer-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .offer-card p {
+      color: #bbb;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+
+    .btn-quote {
+      background: var(--blue);
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-quote:hover {
+      background: var(--red);
+      transform: scale(1.07);
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.4rem; }
+      .btn-main { font-size: 1.2rem; padding: 1.1rem 2.8rem; }
+      .btn-outline { font-size: 1rem; padding: 1rem 2.3rem; }
+      nav ul { display: none; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+      background: #090d14;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="background-animated"></div>
+
+  <nav>
+    <div class="logo">🇨🇴 TricolFly</div>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#ofertas">Ofertas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Tu viaje <span>comienza aquí</span></h1>
+    <p>Descubre vuelos desde Colombia a precios únicos. Flexibilidad total, atención 24/7 y ofertas que no encontrarás en ningún otro lugar.</p>
+
+    <div class="hero-buttons">
+      <button class="btn-main">💥 COTIZAR AHORA 💥</button>
+      <button class="btn-outline">Ver promociones ✈️</button>
+    </div>
+  </section>
+
+  <section id="ofertas" class="offers">
+    <h2>Ofertas exclusivas desde Colombia</h2>
+
+<div class="offers-grid">
+
+  <div class="offer-card">
+    <img src="https://cdn.kimkim.com/files/a/content_articles/featured_photos/897638abc2601b63b7ab00985290fc6fc82c9e2f/big-da259a79513930dec4e5940635c2e2b0.jpg" alt="Cartagena">
+    <h3>🌅 Bogotá → Cartagena 🏖️</h3>
+    <p>☀️ 3 noches · Vuelo directo 🧳</p>
+    <div class="price">💰 COP $249.000</div>
+  </div>
+
+  <div class="offer-card">
+    <img src="https://cdn.kimkim.com/files/a/images/346165c114504064f59be96f6de465c54738885b/big-54b0726664b680b291d7dbc8cae8a712.jpg" alt="Medellín">
+    <h3>🏙️ Bogotá → Medellín 🌄</h3>
+    <p>🌇 2 noches · Ida y vuelta ✈️</p>
+    <div class="price">💸 COP $179.000</div>
+  </div>
+
+  <div class="offer-card">
+    <img src="https://busbud.imgix.net/city-hires/1681397476514-SantaMarta,MagdalenaDepartment,Colombia.jpg?h=480&w=720&auto=format%2Ccompress&fit=crop" alt="Santa Marta">
+    <h3>🏖️ Bogotá → Santa Marta 🌊</h3>
+    <p>☀️ 4 noches · Ida y vuelta 🏝️</p>
+    <div class="price">💵 COP $299.000</div>
+  </div>
+
+  <div class="offer-card">
+    <img src="https://assets-us-01.kc-usercontent.com/b2956330-c34f-0064-2c6f-27bd5c0147fc/0b303746-c34e-4967-a92e-dda61d7699a6/ADZ.png" alt="San Andrés">
+    <h3>🌴 Bogotá → San Andrés 🐠</h3>
+    <p>🏝️ 5 noches · Vuela al paraíso ☀️</p>
+    <div class="price">💲 COP $410.000</div>
+  </div>
+
+  <div class="offer-card">
+    <img src="https://www.colombiadelujo.com/s/cc_images/cache_6996391.jpg" alt="Eje Cafetero">
+    <h3>☕ Medellín → Eje Cafetero 🌿</h3>
+    <p>🌄 3 noches · Tour paisa 🍃</p>
+    <div class="price">💰 COP $220.000</div>
+  </div>
+
+  <div class="offer-card">
+    <img src="https://www.latamairlines.com/content/dam/latamxp/sites/destinos/colombia/deals/bog-deals.jpg" alt="Cali">
+    <h3>🎶 Bogotá → Cali 💃</h3>
+    <p>🌆 3 noches · Vuelo directo 🕺</p>
+    <div class="price">💵 COP $199.000</div>
+  </div>
+  </section>
+
+  <footer id="contacto">
+    © 2025 TricolFly Colombia — Vuela más, paga menos ✈️
+  </footer>
+
+</body>
+</html>
